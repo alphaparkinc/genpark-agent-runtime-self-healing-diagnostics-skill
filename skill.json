@@ -1,0 +1,41 @@
+{
+  "name": "genpark-agent-runtime-self-healing-diagnostics-skill",
+  "version": "1.0.0",
+  "description": "Universal Autonomous Agent Runtime Self-Healing & Diagnostics Engine. Detects configuration drift, corrupted execution state, and missing runtime resources, executing automated root-cause classification and snapshot rollback.",
+  "tools": [
+    {
+      "name": "diagnose_and_heal_agent_runtime",
+      "description": "Perform self-healing diagnostics: scan runtime state for corruption or drift, identify root causes, restore known-good snapshots, and verify recovery.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "diagnose_and_heal_runtime",
+              "create_runtime_snapshot",
+              "rollback_to_snapshot",
+              "get_health_status"
+            ],
+            "description": "Self-healing diagnostic action."
+          },
+          "runtime_state": {
+            "type": "object",
+            "description": "Current active runtime parameters and environment state."
+          },
+          "expected_manifest": {
+            "type": "object",
+            "description": "Expected golden manifest specification."
+          },
+          "snapshot_id": {
+            "type": "string",
+            "description": "Identifier of snapshot to restore."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
